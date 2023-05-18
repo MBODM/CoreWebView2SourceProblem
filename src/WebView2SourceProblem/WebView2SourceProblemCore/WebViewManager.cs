@@ -8,6 +8,8 @@ namespace WebView2SourceProblemCore
         private const string StartUrl = "https://www.curseforge.com/wow/addons/deadly-boss-mods";
         private const string FetchUrl = "https://www.curseforge.com/api/v1/mods/3358/files/4485146/download";
 
+        private string realSourceUrl = string.Empty;
+
         private CoreWebView2? coreWebView = null;
 
         public void Init(CoreWebView2 coreWebView)
@@ -26,6 +28,7 @@ namespace WebView2SourceProblemCore
             coreWebView.NavigationCompleted += CoreWebView_NavigationCompleted;
             coreWebView.SourceChanged += CoreWebView_SourceChanged;
 
+            Debug.WriteLine("Button was pressed and here we go!");
             Navigate(StartUrl);
         }
 
@@ -33,25 +36,25 @@ namespace WebView2SourceProblemCore
         {
             if (e.Uri == StartUrl)
             {
-                Debug.WriteLine("[NavigationStarting SUCCESS] Reached handler for StartUrl.");
+                Debug.WriteLine("[NavigationStarting] StartUrl (SUCCESS)");
             }
             else if (e.Uri == FetchUrl)
             {
-                Debug.WriteLine("[NavigationStarting SUCCESS] Reached handler for FetchUrl.");
+                Debug.WriteLine("[NavigationStarting] FetchUrl (SUCCESS)");
             }
             else if (e.Uri.Contains("api-key=") && e.IsRedirected)
             {
-                Debug.WriteLine("[NavigationStarting SUCCESS] Reached handler for api-key download URL.");
+                Debug.WriteLine("[NavigationStarting] Redirect api-key download URL (SUCCESS)");
 
                 // Redirect example URL -> https://edge.forgecdn.net/files/4485/146/DBM-10.0.35.zip?api-key=267C6CA3
                 // In reality the download will start (DownloadStarting event and so on) after this...
 
-                Debug.WriteLine("Example finished, will cancel the naviation now to stop the example.");
+                Debug.WriteLine("[NavigationStarting] Example finished, will cancel the naviation now to stop the example.");
                 e.Cancel = true;
             }
             else
             {
-                Debug.WriteLine("[NavigationStarting ERROR] Given URL not allowed, will cancel the navigation.");
+                Debug.WriteLine("[NavigationStarting] Given URL not allowed, will cancel the navigation. (ERROR)");
                 e.Cancel = true;
             }
         }
@@ -60,22 +63,25 @@ namespace WebView2SourceProblemCore
         {
             if (coreWebView == null) return; // Enforced by NRT
 
-            if (coreWebView.Source == StartUrl)
+            //var url = coreWebView.Source;
+            var url = realSourceUrl;
+
+            if (url == StartUrl)
             {
-                Debug.WriteLine("[NavigationCompleted SUCCESS] Reached handler for StartUrl.");
+                Debug.WriteLine("[NavigationCompleted] StartUrl (SUCCESS)");
 
                 // Simulating the fetched URL (to navigate to) by using the FetchUrl constant here.
                 // In reality that URL is fetched from the JSON (embedded in StartUrl website)...
 
                 Navigate(FetchUrl); // <-- Here is the problem/issue: CoreWebView2 will not navigate to FetchUrl and not changes Source property.
             }
-            else if (coreWebView.Source == FetchUrl)
+            else if (url == FetchUrl)
             {
-                Debug.WriteLine("[NavigationCompleted SUCCESS] Reached handler for FetchUrl, some redirects will occur now.");
+                Debug.WriteLine("[NavigationCompleted] FetchUrl (SUCCESS) --> Redirects will occur now");
             }
             else
             {
-                Debug.WriteLine("[NavigationCompleted ERROR] Given URL not allowed, will not continue with navigation.");
+                Debug.WriteLine("[NavigationCompleted] Given URL not allowed, will not continue with navigation. (ERROR)");
             }
         }
 
@@ -83,14 +89,16 @@ namespace WebView2SourceProblemCore
         {
             if (coreWebView == null) return; // Enforced by NRT
 
-            Debug.WriteLine($"[SourceChanged SUCCESS] CoreWebView.Source changed to {coreWebView.Source}");
+            Debug.WriteLine($"[SourceChanged] CoreWebView.Source changed to {coreWebView.Source} (SUCCESS)");
         }
 
         private void Navigate(string url)
         {
             if (coreWebView == null) return; // Enforced by NRT
 
+            realSourceUrl = url;
             coreWebView.Stop(); // Just to make sure
+            Debug.WriteLine("!!! We will navigate now !!!");
             coreWebView.Navigate(url);
         }
     }
