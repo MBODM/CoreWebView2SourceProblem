@@ -1,2 +1,7 @@
 # CoreWebView2SourceProblem
-A sample project to demonstrate a WebView2 error behaviour for some GitHub issue
+Sample project for a WebView2 GitHub issue
+
+It´s just a small sample project, to demonstrate some WebView2 error behaviour, for the following WebView2 GitHub issue:
+https://github.com/MicrosoftEdge/WebView2Feedback/issues/3461
+
+Have fun.
