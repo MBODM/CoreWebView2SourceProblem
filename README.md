@@ -10,6 +10,6 @@ Used environment/stuff:
 - Visual Studio 2022 (Version 17.5.5)
 - Solution contains a simple .NET 6 WinForms project
 - Solution contains a simple .NET 6 ClassLibrary project
-- Both projects use Microsoft.Web.WebView2 NuGet package (Version 1.0.1774.30)
+- Both projects use `Microsoft.Web.WebView2` NuGet package (Version 1.0.1774.30)
 
 #### Have fun.
