@@ -63,8 +63,8 @@ namespace WebView2SourceProblemCore
         {
             if (coreWebView == null) return; // Enforced by NRT
 
-            //var url = coreWebView.Source;
-            var url = realSourceUrl;
+            var url = coreWebView.Source;
+            //var url = realSourceUrl;
 
             if (url == StartUrl)
             {
