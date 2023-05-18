@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView2SourceProblem", "WebView2SourceProblem\WebView2SourceProblem.csproj", "{C356444A-5A05-4CD4-B2B9-071C28326D9D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53A885E9-A4C1-4865-9652-52224DDA0433} = {53A885E9-A4C1-4865-9652-52224DDA0433}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView2SourceProblemCore", "WebView2SourceProblemCore\WebView2SourceProblemCore.csproj", "{53A885E9-A4C1-4865-9652-52224DDA0433}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C356444A-5A05-4CD4-B2B9-071C28326D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C356444A-5A05-4CD4-B2B9-071C28326D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C356444A-5A05-4CD4-B2B9-071C28326D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C356444A-5A05-4CD4-B2B9-071C28326D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A885E9-A4C1-4865-9652-52224DDA0433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A885E9-A4C1-4865-9652-52224DDA0433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A885E9-A4C1-4865-9652-52224DDA0433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A885E9-A4C1-4865-9652-52224DDA0433}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF66CD4A-78A4-44C5-BF8B-798CF94C5B6C}
+	EndGlobalSection
+EndGlobal
